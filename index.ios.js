@@ -5,7 +5,11 @@
 'use strict';
 
 var React = require('react-native');
-var TextView = require('./TextView');
+var FlexboxView = require('./FlexboxView');
+var CSSView = require('./CSSView');
+var BaseWidgetsView = require('./BaseWidgetsView');
+
+
 var {
   AlertIOS,
   AppRegistry,
@@ -24,71 +28,101 @@ var {
 </Image>
 */
 
-class PropertyFinderApp extends React.Component {
+class HelloNavigator extends React.Component {
   render() {
     return (
       <React.NavigatorIOS
         style={styles.nav}
         initialRoute={{
-          title: 'Base Widgets',
-          component: HelloReactNative,
+          title: 'Chapters',
+          component: Chapters,
         }}/>
     );
   }
 }
 
 
-class HelloReactNative extends Component {
-  onTextPressed() {
+class Chapters extends Component {
+  onFlexboxViewPressed() {
     console.log('Text - highlight')
     var url = 'http://www.tuicool.com/'
     console.log(url)
-    var group = [];
+
     this.props.navigator.push({
-      title: "TextView",
-      component: TextView,
+      title: "Flexbox",
+      component: FlexboxView,
       passProps: {
         url: url
       }
     })
-    console.log('onTextPressed - over')
   }
+
+  onCSSViewPressed() {
+    console.log('Text - highlight')
+    var url = 'http://www.tuicool.com/'
+    console.log(url)
+
+    this.props.navigator.push({
+      title: "CSS",
+      component: CSSView,
+      passProps: {
+        url: url
+      }
+    })
+  }
+
+  onTextInputPressed() {
+    console.log('Text - highlight')
+    var url = 'http://www.tuicool.com/'
+    console.log(url)
+
+    this.props.navigator.push({
+      title: "TextInputView",
+      component: TextInputView,
+      passProps: {
+        url: url
+      }
+    })
+  }
+
+  onBaseWidgetsViewPressed() {
+    console.log('Text - highlight')
+    var url = 'http://www.tuicool.com/'
+    console.log(url)
+
+    this.props.navigator.push({
+      title: "BaseWidgets",
+      component: BaseWidgetsView,
+      passProps: {
+        url: url
+      }
+    })
+  }
+
 
   render() {
     return (
 
+
       <View style={styles.container}>
-
-        <Text style={styles.welcome}>
-            React-Native ：基本控件
-        </Text>
-
         <TouchableHighlight style={styles.button}
             underlayColor='#99d9f4'
-            onPress={() => console.log('Text - highlight')}>
-          <Text style={styles.buttonText}>&lt;Text/&gt;</Text>
+            onPress={() => this.onFlexboxViewPressed()}>
+          <Text style={styles.buttonText}>&lt;Flexbox/&gt;</Text>
         </TouchableHighlight>
 
         <TouchableHighlight style={styles.button}
             underlayColor='#99d9f4'
-            onPress={() => AlertIOS.alert(
-              'Foo Title',
-              'My Alert Msg'
-            )}>
-          <Text style={styles.buttonText}>&lt;Image/&gt;</Text>
+            onPress={() => this.onCSSViewPressed()}>
+          <Text style={styles.buttonText}>&lt;CSS/&gt;</Text>
         </TouchableHighlight>
 
         <TouchableHighlight style={styles.button}
             underlayColor='#99d9f4'
-            onPress={() => this.onTextPressed()}>
-          <Text style={styles.buttonText}>&lt;TextInput/&gt;</Text>
+            onPress={() => this.onBaseWidgetsViewPressed()}>
+          <Text style={styles.buttonText}>&lt;BaseWidgets/&gt;</Text>
         </TouchableHighlight>
 
-        <TouchableHighlight style={styles.button}
-            underlayColor='#99d9f4'
-            onPress= {this.onTextPressed.bind(this)}>
-          <Text style={styles.buttonText}>&lt;TouchableHighlight/&gt;</Text>
-        </TouchableHighlight>
       </View>
 
     );
@@ -97,19 +131,20 @@ class HelloReactNative extends Component {
 
 var styles = StyleSheet.create({
   text: {
-  color: 'black',
-  backgroundColor: 'white',
-  fontSize: 30,
-  margin: 80
-},
-nav: {
-  flex: 1
-},
+    color: 'black',
+    backgroundColor: 'white',
+    fontSize: 30,
+    margin: 80
+  },
+  nav: {
+    flex: 1
+  },
     container: {
         flex: 1,
+        marginTop: 70,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#303339',
     },
     welcome: {
         fontSize: 20,
@@ -140,4 +175,4 @@ nav: {
     },
 });
 
-AppRegistry.registerComponent('HelloReactNative', function(){return PropertyFinderApp});
+AppRegistry.registerComponent('HelloReactNative', function(){return HelloNavigator});
