@@ -13,29 +13,9 @@ var {
 var styles = StyleSheet.create({
   container: {
       flex: 1,
-      justifyContent: 'flex-start',
+      justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: '#F5FCFF',
-  },
-  description: {
-    fontSize: 18,
-    margin: 5,
-    color: '#656565'
-  },
-  padding: {
-    padding: 10,
-  },
-  button: {
-    height: 36,
-    flex: 1,
-    flexDirection: 'row',
-    backgroundColor: '#48BBEC',
-    borderColor: '#48BBEC',
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
   },
 });
 class TextView extends Component {
@@ -52,20 +32,15 @@ class TextView extends Component {
       }
     })
   }
-  
+
   render() {
     return (
       <View style={styles.container}>
-      <TouchableHighlight style={styles.button}
-          underlayColor='#99d9f4'
-          onPress={() => this.onTextPressed()}>
-        <Text style={styles.buttonText}>&lt;Text/&gt;</Text>
-      </TouchableHighlight>
+        <Text style={{fontSize:'30'}}>Parent
+         <Text style={{color:'red'}}>Child</Text>
+        </Text>
 
-        <Text style={styles.description}>Text</Text>
-
-        <Text style={[styles.description ,{color:'#ff0000',padding:20}]}>Text1</Text>
-
+         <Text numberOfLines= {3} style={{margin:20}}>React Native 使你能够使用基于 JavaScript 和 React 构建世界一流的应用程序。 React Native 把重点放在所有开发人员关心的平台的开发效率上——开发者只需学习一种语言就能轻易为任何平台高效地编写代码。 通过该课程，学员可以理解 Flexbox， 并基本掌握 React Native 的样式和布局开发。 </Text>
       </View>
     );
   }
